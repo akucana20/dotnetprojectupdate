@@ -7,7 +7,7 @@
         public string Position { get; set; }
         public string Department { get; set; }
 
-        // You can add other properties that can be updated
+     
     }
 
 }

@@ -1,8 +1,8 @@
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using dotnetproject.Models; // Assuming your models are in this namespace
-using dotnetproject.Data; // Assuming your DbContext is in this namespace
+using dotnetproject.Models; 
+using dotnetproject.Data;
 using dotnetproject.Services;
 
 
@@ -13,7 +13,7 @@ namespace dotnetproject.Services
         User CreateUser(CreateUserModel model);
         User UpdateUser(int userId, UpdateUserModel model);
         bool DeleteUser(int userId);
-        // Other necessary methods...
+        
     }
 
     public class UserService : IUserService

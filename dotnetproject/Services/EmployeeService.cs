@@ -53,13 +53,12 @@ namespace dotnetproject.Services
             var task = _context.Tasks.FirstOrDefault(t => t.Id == taskId && t.AssignedToEmployee.User.Username == username);
             if (task == null) return false;
 
-            // Update task status to completed here
             _context.SaveChanges();
             return true;
         }
         public Employee GetProfile(string username)
         {
-            // Retrieve and return employee profile based on username
+            return _context.Employees.FirstOrDefault(e => e.User.Username == username);
         }
 
 

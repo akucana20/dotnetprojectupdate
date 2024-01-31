@@ -3,6 +3,8 @@ using System.Linq;
 using dotnetproject.Models; // Updated to the correct namespace
 using dotnetproject.Data; // Updated to the correct namespace
 using dotnetproject.Services;
+using Microsoft.EntityFrameworkCore;
+
 
 
 
@@ -87,11 +89,34 @@ namespace dotnetproject.Services
             return true;
         }
 
-        public bool AddEmployeeToProject(int projectId, int employeeId) {
-        
-        }
-        public bool RemoveEmployeeFromProject(int projectId, int employeeId) {
+        public bool AddEmployeeToProject(int projectId, int employeeId)
+        {
+            var project = _context.Projects.Include(p => p.Employees).FirstOrDefault(p => p.Id == projectId);
+            var employee = _context.Employees.FirstOrDefault(e => e.UserId == employeeId);
 
+            if (project == null || employee == null || project.Employees.Contains(employee))
+            {
+                return false;
+            }
+
+            project.Employees.Add(employee);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool RemoveEmployeeFromProject(int projectId, int employeeId)
+        {
+            var project = _context.Projects.Include(p => p.Employees).FirstOrDefault(p => p.Id == projectId);
+            var employee = _context.Employees.FirstOrDefault(e => e.UserId == employeeId);
+
+            if (project == null || employee == null || !project.Employees.Contains(employee))
+            {
+                return false;
+            }
+
+            project.Employees.Remove(employee);
+            _context.SaveChanges();
+            return true;
         }
 
         // Implement other methods as needed...

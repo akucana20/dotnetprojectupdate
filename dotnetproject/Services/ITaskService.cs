@@ -14,7 +14,7 @@ namespace dotnetproject.Services
         IEnumerable<Task> GetAllTasks();
         bool AssignTask(int taskId, int employeeId);
         bool DeleteTask(int taskId);
-        // Other necessary methods...
+       
     }
 
     public class TaskService : ITaskService
@@ -32,7 +32,7 @@ namespace dotnetproject.Services
             {
                 Name = model.Name,
                 Description = model.Description,
-                Status = TaskStatus.Pending, // Initial status
+                Status = TaskStatus.Pending,
                 AssignedToEmployeeId = model.AssignedToEmployeeId,
                 ProjectId = model.ProjectId,
                 StartDate = model.StartDate,

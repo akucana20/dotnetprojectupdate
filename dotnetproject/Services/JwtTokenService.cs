@@ -29,11 +29,11 @@ namespace dotnetproject.Services
             {
                 new Claim(JwtRegisteredClaimNames.Sub, username),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                // Add other claims as needed
+          
             };
 
             var token = new JwtSecurityToken(issuer, audience, claims,
-                expires: DateTime.Now.AddMinutes(30), // Token expiration time
+                expires: DateTime.Now.AddMinutes(30), 
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
